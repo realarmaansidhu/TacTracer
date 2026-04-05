@@ -1,5 +1,0 @@
-#fields ts  uid id.orig_h   id.orig_p   id.resp_h   id.resp_p   proto   service conn_state  label
-1525879831.01   C1x2aB3cD   192.168.1.100   3842    10.0.0.5    23  tcp -   S0  Mirai_Botnet_Suspected
-1525879831.05   C2x3bC4dE   192.168.1.100   3843    10.0.0.5    23  tcp -   S0  Mirai_Botnet_Suspected
-1525879831.10   C3x4cD5eF   192.168.1.100   3844    10.0.0.5    2323    tcp -   S0  Mirai_Botnet_Suspected
-1525879831.15   C4x5dE6fG   192.168.1.100   3845    10.0.0.5    2323    tcp -   S0  Mirai_Botnet_Suspected

@@ -1,5 +1,0 @@
-#fields ts  uid id.orig_h   id.orig_p   id.resp_h   id.resp_p   proto   service conn_state  label
-1525883000.00   C7x8qR9sT   192.168.1.105   60123   185.15.22.4 80  tcp http    SF  C2_Beacon
-1525883060.00   C8x9rS0tU   192.168.1.105   60124   185.15.22.4 80  tcp http    SF  C2_Beacon
-1525883120.00   C9x0sT1uV   192.168.1.105   60125   185.15.22.4 80  tcp http    SF  C2_Beacon
-1525883180.00   C0x1tU2vW   192.168.1.105   60126   185.15.22.4 80  tcp http    SF  C2_Beacon

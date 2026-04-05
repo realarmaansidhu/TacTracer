@@ -1,5 +1,0 @@
-#fields ts  uid id.orig_h   id.orig_p   id.resp_h   id.resp_p   proto   service conn_state  label
-1525881044.12   C9x0iJ1kL   10.0.0.22   5555    192.168.1.200   22  tcp ssh S0  SSH_Bruteforce_Attempt
-1525881044.15   C0x1jK2lM   10.0.0.22   5556    192.168.1.200   22  tcp ssh S0  SSH_Bruteforce_Attempt
-1525881044.18   C1x2kL3mN   10.0.0.22   5557    192.168.1.200   22  tcp ssh S0  SSH_Bruteforce_Attempt
-1525881044.21   C2x3lM4nO   10.0.0.22   5558    192.168.1.200   22  tcp ssh S0  SSH_Bruteforce_Attempt

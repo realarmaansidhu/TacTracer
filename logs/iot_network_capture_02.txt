@@ -1,0 +1,18 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	conn
+#open	2018-05-09-17-22-05
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents	label	detailed-label
+#types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]	string	string
+1525884125.102943	CKqr0Z1bKwk5N0Gxt9	192.168.1.195	49300	176.32.33.100	23	tcp	-	3.001204	0	0	S0	-	-	0	S	4	208	0	0	-	Malicious	PartOfAHorizontalPortScan
+1525884126.230102	CD7ux32F8LjQPxVH5a	192.168.1.195	49301	176.32.33.101	23	tcp	-	3.004510	0	0	S0	-	-	0	S	4	208	0	0	-	Malicious	PartOfAHorizontalPortScan
+1525884127.510394	CNrt5G1OsJymIiQ0vb	192.168.1.195	49302	176.32.33.102	2323	tcp	-	3.120401	0	0	S0	-	-	0	S	4	208	0	0	-	Malicious	PartOfAHorizontalPortScan
+1525884128.810238	CMi3jh1wgAUmkRPCaf	192.168.1.195	48910	91.219.236.222	80	tcp	http	60.001023	0	289	SF	-	-	0	ShADTaFf	4	208	5	577	-	Malicious	C&C
+1525884129.120845	CL5jR33JXbmXzBNxk8	192.168.1.195	37300	8.8.4.4	53	udp	dns	0.025102	44	60	SF	-	-	0	Dd	1	72	1	88	-	Benign	-
+1525884130.430219	C8kMnR2LSa8BJHYP0e	10.0.0.22	56100	192.168.1.195	22	tcp	ssh	0.000000	0	0	S0	-	-	0	S	3	180	0	0	-	Malicious	DDoS
+1525884131.801344	CPoqVn3k8Rr4XAJWZ2	10.0.0.22	56101	192.168.1.195	22	tcp	ssh	0.000000	0	0	S0	-	-	0	S	3	180	0	0	-	Malicious	DDoS
+1525884132.100239	CXhq5W4IYfEhBVNxPi	192.168.1.195	48920	104.21.44.12	443	tcp	ssl	2.301204	890	12340	SF	-	-	0	ShADTtaFf	18	1714	14	13028	-	Benign	-
+1525884188.810910	CRpt6M2ByxNH0V3Kn1	192.168.1.195	48930	91.219.236.222	80	tcp	http	60.003102	0	301	SF	-	-	0	ShADTaFf	4	208	5	589	-	Malicious	C&C
+1525884133.920103	CW0qLk1AhSvp2JMDnf	192.168.1.195	49400	172.16.0.1	8080	tcp	http	0.102340	480	0	S0	-	-	0	ShA	6	768	0	0	-	Malicious	PartOfAHorizontalPortScan
