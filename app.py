@@ -39,10 +39,10 @@ st.markdown("""
     }
     p.hero-subtitle {
         color: #b0bdd0 !important;
-        font-size: 1.15rem !important;
+        font-size: 1.25rem !important;
         text-align: center !important;
         margin-top: 4px !important;
-        margin-bottom: 28px !important;
+        margin-bottom: 32px !important;
         font-weight: 400 !important;
     }
 
@@ -56,7 +56,7 @@ st.markdown("""
         font-size: 1.8rem !important; font-weight: 700 !important; color: #00d4ff !important;
     }
     .stat-card .stat-label {
-        font-size: 0.8rem !important; color: #8899bb !important;
+        font-size: 0.9rem !important; color: #8899bb !important;
         text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px;
     }
 
@@ -71,23 +71,23 @@ st.markdown("""
     .file-pill {
         display: inline-block; background: rgba(0,212,255,0.10);
         border: 1px solid rgba(0,212,255,0.25); color: #00d4ff !important;
-        border-radius: 20px; padding: 5px 14px; margin: 3px 4px;
-        font-size: 0.85rem; font-family: monospace;
+        border-radius: 20px; padding: 6px 16px; margin: 4px 5px;
+        font-size: 0.95rem; font-family: monospace;
     }
 
     /* ═══ LOG VIEWER ═══ */
     .log-viewer {
         background: #0b1120; border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 10px; padding: 16px;
-        font-family: 'SF Mono','Fira Code',monospace; font-size: 0.78rem;
-        color: #a0b0c0; max-height: 320px; overflow-y: auto; line-height: 1.6;
+        border-radius: 10px; padding: 18px;
+        font-family: 'SF Mono','Fira Code',monospace; font-size: 0.85rem;
+        color: #b0c0d0; max-height: 350px; overflow-y: auto; line-height: 1.7;
     }
 
     /* ═══ RAG CHUNKS ═══ */
     .rag-chunk {
         background: rgba(123,47,247,0.06); border-left: 3px solid #7b2ff7;
-        border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 12px;
-        font-size: 0.9rem !important; color: #c0c8dd !important; line-height: 1.6;
+        border-radius: 0 8px 8px 0; padding: 16px 20px; margin-bottom: 14px;
+        font-size: 1.0rem !important; color: #c0c8dd !important; line-height: 1.7;
     }
 
     /* ═══ REJECTED FILE ═══ */
@@ -132,78 +132,81 @@ st.markdown("""
     }
 
     /* ═══ REPORT TYPOGRAPHY ═══ */
-    /* Body text */
+    /* Body text — bumped to 1.1rem */
     [data-testid="stMarkdownContainer"] p {
         color: #e0e6f0 !important;
-        font-size: 0.95rem !important;
-        line-height: 1.75 !important;
+        font-size: 1.1rem !important;
+        line-height: 1.8 !important;
     }
-    /* H1 — main report sections */
+    /* H1 */
     [data-testid="stMarkdownContainer"] h1 {
         color: #ffffff !important;
-        font-size: 1.8rem !important;
+        font-size: 2rem !important;
         font-weight: 700 !important;
-        margin-top: 36px !important;
-        margin-bottom: 14px !important;
-        padding-bottom: 10px !important;
+        margin-top: 40px !important;
+        margin-bottom: 16px !important;
+        padding-bottom: 12px !important;
         border-bottom: 2px solid rgba(0,212,255,0.25) !important;
     }
-    /* H2 — subsections */
+    /* H2 — report section titles */
     [data-testid="stMarkdownContainer"] h2 {
         color: #00d4ff !important;
-        font-size: 1.45rem !important;
-        font-weight: 600 !important;
-        margin-top: 30px !important;
-        margin-bottom: 12px !important;
+        font-size: 1.6rem !important;
+        font-weight: 700 !important;
+        margin-top: 34px !important;
+        margin-bottom: 14px !important;
+        padding-bottom: 6px !important;
+        border-bottom: 1px solid rgba(0,212,255,0.15) !important;
     }
     /* H3 */
     [data-testid="stMarkdownContainer"] h3 {
         color: #7bb8ff !important;
-        font-size: 1.15rem !important;
+        font-size: 1.3rem !important;
         font-weight: 600 !important;
-        margin-top: 24px !important;
-        margin-bottom: 10px !important;
+        margin-top: 28px !important;
+        margin-bottom: 12px !important;
     }
     /* H4-H6 */
     [data-testid="stMarkdownContainer"] h4,
     [data-testid="stMarkdownContainer"] h5,
     [data-testid="stMarkdownContainer"] h6 {
         color: #a0c4e8 !important;
-        font-size: 1.05rem !important;
+        font-size: 1.15rem !important;
         font-weight: 600 !important;
-        margin-top: 18px !important;
-        margin-bottom: 8px !important;
+        margin-top: 20px !important;
+        margin-bottom: 10px !important;
     }
     /* Bold */
     [data-testid="stMarkdownContainer"] strong,
     [data-testid="stMarkdownContainer"] b {
         color: #ffffff !important;
+        font-size: inherit !important;
     }
-    /* Lists */
+    /* Lists — bigger */
     [data-testid="stMarkdownContainer"] ul,
     [data-testid="stMarkdownContainer"] ol {
         color: #e0e6f0 !important;
-        padding-left: 28px !important;
-        margin-bottom: 14px !important;
+        padding-left: 30px !important;
+        margin-bottom: 16px !important;
     }
     [data-testid="stMarkdownContainer"] li {
         color: #e0e6f0 !important;
-        font-size: 0.95rem !important;
-        line-height: 1.7 !important;
-        margin-bottom: 8px !important;
+        font-size: 1.05rem !important;
+        line-height: 1.8 !important;
+        margin-bottom: 10px !important;
     }
-    /* Tables */
+    /* Tables — bigger */
     [data-testid="stMarkdownContainer"] table {
-        width: 100% !important; border-collapse: collapse !important; margin: 14px 0 !important;
+        width: 100% !important; border-collapse: collapse !important; margin: 16px 0 !important;
     }
     [data-testid="stMarkdownContainer"] th {
         background: rgba(0,212,255,0.1) !important; color: #ffffff !important;
-        font-weight: 600 !important; text-align: left !important; padding: 10px 14px !important;
-        border-bottom: 2px solid rgba(0,212,255,0.25) !important; font-size: 0.9rem !important;
+        font-weight: 600 !important; text-align: left !important; padding: 12px 16px !important;
+        border-bottom: 2px solid rgba(0,212,255,0.25) !important; font-size: 1.0rem !important;
     }
     [data-testid="stMarkdownContainer"] td {
-        color: #d0d8e8 !important; padding: 8px 14px !important;
-        border-bottom: 1px solid rgba(255,255,255,0.06) !important; font-size: 0.9rem !important;
+        color: #d0d8e8 !important; padding: 10px 16px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important; font-size: 1.0rem !important;
     }
 
     /* ═══ HERO OVERRIDES — must beat [data-testid] p ═══ */
@@ -262,6 +265,21 @@ st.markdown("""
     [data-testid="stFileUploader"] p,
     [data-testid="stFileUploader"] > div > div:not([data-testid="stFileUploaderDropzone"]) div {
         color: #c0d0e0 !important;
+        font-size: 0.95rem !important;
+    }
+    /* X delete buttons — white */
+    [data-testid="stFileUploader"] button[kind="icon"],
+    [data-testid="stFileUploader"] button[aria-label="Delete file"] {
+        color: #ffffff !important;
+    }
+    [data-testid="stFileUploader"] button[kind="icon"] svg,
+    [data-testid="stFileUploader"] button[aria-label="Delete file"] svg {
+        stroke: #ffffff !important;
+    }
+    /* Pagination arrows */
+    [data-testid="stFileUploader"] button[aria-label*="page"] svg,
+    [data-testid="stFileUploader"] button[aria-label*="Page"] svg {
+        stroke: #ffffff !important;
     }
     /* Dropzone — keep native dark-on-light */
     [data-testid="stFileUploaderDropzone"],
@@ -270,13 +288,14 @@ st.markdown("""
     [data-testid="stFileUploaderDropzone"] p,
     [data-testid="stFileUploaderDropzone"] div {
         color: unset !important;
+        font-size: unset !important;
     }
 
     /* ═══ ALERTS — keep native colors ═══ */
     .stAlert p, .stAlert span { color: inherit !important; }
 
     /* ═══ CAPTION ═══ */
-    .stCaption p, .stCaption span { color: #aabbcc !important; }
+    .stCaption p, .stCaption span { color: #aabbcc !important; font-size: 0.95rem !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -423,13 +442,18 @@ PROMPT = ChatPromptTemplate.from_messages([
         "You are an expert IoT Security Incident Responder. "
         "Analyse the provided network logs using the MITRE ATT&CK technique chunks retrieved below. "
         "Ground every finding in the retrieved techniques first; use your own security knowledge only "
-        "to fill gaps, and clearly label such inferences as 'Analyst Inference'. "
-        "Return a concise professional report with exactly these sections:\n"
-        "1) Executive Summary\n"
-        "2) Key Findings\n"
-        "3) MITRE ATT&CK Mapping  (Technique ID | Technique Name | Evidence from logs)\n"
-        "4) Risk Assessment\n"
-        "5) Recommended Remediation Actions",
+        "to fill gaps, and clearly label such inferences as 'Analyst Inference'.\n\n"
+        "IMPORTANT FORMATTING RULES:\n"
+        "- Use markdown ## headings for each section title (e.g. ## Executive Summary)\n"
+        "- Use bullet points or numbered lists for findings and actions\n"
+        "- Use a markdown table with columns: Technique ID | Technique Name | Evidence for the MITRE mapping\n"
+        "- Use **bold** for key terms and threat names\n\n"
+        "Sections to include:\n"
+        "## Executive Summary\n"
+        "## Key Findings\n"
+        "## MITRE ATT&CK Mapping\n"
+        "## Risk Assessment\n"
+        "## Recommended Remediation Actions",
     ),
     (
         "user",
