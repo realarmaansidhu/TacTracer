@@ -242,10 +242,10 @@ st.markdown("""
     }
     /* Section header — beat global p */
     [data-testid="stMarkdownContainer"] .section-header {
-        font-size: 1.4rem !important; font-weight: 700 !important; color: #00d4ff !important;
+        font-size: 1.6rem !important; font-weight: 700 !important; color: #00d4ff !important;
         -webkit-text-fill-color: #00d4ff !important;
         border-bottom: 2px solid rgba(0,212,255,0.25) !important;
-        padding-bottom: 10px !important; margin-top: 36px !important; margin-bottom: 18px !important;
+        padding-bottom: 12px !important; margin-top: 40px !important; margin-bottom: 20px !important;
     }
     /* File pill — beat global span */
     [data-testid="stMarkdownContainer"] .file-pill {
@@ -297,7 +297,21 @@ st.markdown("""
     .stAlert p, .stAlert span { color: inherit !important; }
 
     /* ═══ CAPTION ═══ */
-    .stCaption p, .stCaption span { color: #aabbcc !important; font-size: 0.95rem !important; }
+    .stCaption, .stCaption p, .stCaption span, .stCaption code,
+    [data-testid="stCaptionContainer"],
+    [data-testid="stCaptionContainer"] * {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        font-size: 1.0rem !important;
+    }
+    .stCaption code, [data-testid="stCaptionContainer"] code {
+        background: rgba(0,212,255,0.1) !important;
+        color: #00d4ff !important;
+        -webkit-text-fill-color: #00d4ff !important;
+        padding: 2px 8px !important;
+        border-radius: 4px !important;
+        font-size: 0.95rem !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
