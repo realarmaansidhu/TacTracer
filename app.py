@@ -186,26 +186,20 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* File uploader — everything outside the dropzone gets light text */
-    [data-testid="stFileUploader"] * {
+    /* File uploader — light text for file list area */
+    [data-testid="stFileUploader"] span,
+    [data-testid="stFileUploader"] small,
+    [data-testid="stFileUploader"] p,
+    [data-testid="stFileUploader"] div {
         color: #c0d0e0 !important;
     }
-    [data-testid="stFileUploader"] svg,
-    [data-testid="stFileUploader"] path {
-        color: #c0d0e0 !important;
-        fill: #c0d0e0 !important;
-        stroke: #c0d0e0 !important;
-    }
-    /* Dropzone itself — revert to its own dark-on-light styling */
+    /* Dropzone — revert to native dark-on-light */
     [data-testid="stFileUploaderDropzone"],
-    [data-testid="stFileUploaderDropzone"] * {
+    [data-testid="stFileUploaderDropzone"] span,
+    [data-testid="stFileUploaderDropzone"] small,
+    [data-testid="stFileUploaderDropzone"] p,
+    [data-testid="stFileUploaderDropzone"] div {
         color: unset !important;
-    }
-    [data-testid="stFileUploaderDropzone"] svg,
-    [data-testid="stFileUploaderDropzone"] path {
-        color: unset !important;
-        fill: unset !important;
-        stroke: unset !important;
     }
 
     /* Info / warning / success / error boxes — keep native colors */
