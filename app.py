@@ -259,14 +259,41 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* ═══ FILE UPLOADER — NUCLEAR: everything white ═══ */
+    /* ═══ FILE UPLOADER — NUCLEAR: force ALL text visible ═══ */
     [data-testid="stFileUploader"],
-    [data-testid="stFileUploader"] * {
+    [data-testid="stFileUploader"] *,
+    [data-testid="stFileUploader"] div,
+    [data-testid="stFileUploader"] span,
+    [data-testid="stFileUploader"] p,
+    [data-testid="stFileUploader"] small,
+    [data-testid="stFileUploader"] label,
+    [data-testid="stFileUploader"] section,
+    [data-testid="stFileUploaderDropzone"],
+    [data-testid="stFileUploaderDropzone"] *,
+    [data-testid="stFileUploaderDropzone"] div,
+    [data-testid="stFileUploaderDropzone"] span,
+    [data-testid="stFileUploaderDropzone"] p,
+    [data-testid="stFileUploaderDropzone"] small,
+    [data-testid="stFileUploaderDropzoneInstructions"],
+    [data-testid="stFileUploaderDropzoneInstructions"] * {
         color: #ffffff !important;
         -webkit-text-fill-color: #ffffff !important;
     }
-    /* SVGs (X buttons, arrows, file icons) */
-    [data-testid="stFileUploader"] svg {
+    /* Dropzone secondary/limit text — slightly dimmer */
+    [data-testid="stFileUploaderDropzone"] small,
+    [data-testid="stFileUploaderDropzone"] div[data-testid="stFileUploaderDropzoneInstructions"] div:last-child,
+    [data-testid="stFileUploaderDropzone"] div[data-testid="stFileUploaderDropzoneInstructions"] span:last-child {
+        color: #99aabb !important;
+        -webkit-text-fill-color: #99aabb !important;
+    }
+    /* Dropzone background */
+    [data-testid="stFileUploaderDropzone"] {
+        background: rgba(255,255,255,0.03) !important;
+        border: 1px dashed rgba(0,212,255,0.3) !important;
+    }
+    /* SVGs everywhere in uploader */
+    [data-testid="stFileUploader"] svg,
+    [data-testid="stFileUploaderDropzone"] svg {
         color: #ffffff !important;
     }
     [data-testid="stFileUploader"] svg line,
@@ -277,20 +304,12 @@ st.markdown("""
     [data-testid="stFileUploader"] svg polygon {
         stroke: #ffffff !important;
     }
-    /* Dropzone — revert EVERYTHING back to native */
-    [data-testid="stFileUploaderDropzone"],
-    [data-testid="stFileUploaderDropzone"] * {
-        color: unset !important;
-        -webkit-text-fill-color: unset !important;
-    }
-    [data-testid="stFileUploaderDropzone"] svg,
-    [data-testid="stFileUploaderDropzone"] svg line,
-    [data-testid="stFileUploaderDropzone"] svg polyline,
-    [data-testid="stFileUploaderDropzone"] svg path,
-    [data-testid="stFileUploaderDropzone"] svg circle,
-    [data-testid="stFileUploaderDropzone"] svg rect,
-    [data-testid="stFileUploaderDropzone"] svg polygon {
-        stroke: unset !important;
+    /* Browse button */
+    [data-testid="stFileUploaderDropzone"] button,
+    [data-testid="stBaseButton-secondary"] {
+        color: #00d4ff !important;
+        -webkit-text-fill-color: #00d4ff !important;
+        border-color: rgba(0,212,255,0.4) !important;
     }
 
     /* ═══ ALERTS — keep native colors ═══ */
