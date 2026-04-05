@@ -161,6 +161,11 @@ st.markdown("""
     .stSpinner > div > div {
         border-top-color: #00d4ff !important;
     }
+    .stSpinner, .stSpinner > div, .stSpinner span,
+    [data-testid="stSpinner"], [data-testid="stSpinner"] span,
+    [data-testid="stStatusWidget"] span {
+        color: #ffffff !important;
+    }
 
     /* ── Global text contrast fixes ── */
     /* Main content text — bright white */
