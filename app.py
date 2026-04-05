@@ -25,18 +25,20 @@ st.markdown("""
 
     /* Header area */
     .hero-title {
-        font-size: 2.6rem;
+        font-size: 2.8rem;
         font-weight: 800;
         background: linear-gradient(135deg, #00d4ff, #7b2ff7);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 0;
+        text-align: center;
     }
     .hero-subtitle {
         color: #8899aa;
         font-size: 1.05rem;
         margin-top: 4px;
         margin-bottom: 28px;
+        text-align: center;
     }
 
     /* Stat cards row */
@@ -62,13 +64,14 @@ st.markdown("""
 
     /* Section headers */
     .section-header {
-        font-size: 1.15rem;
-        font-weight: 600;
-        color: #c0ccdd;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #00d4ff;
         border-bottom: 2px solid rgba(0,212,255,0.25);
-        padding-bottom: 8px;
-        margin-top: 28px;
-        margin-bottom: 14px;
+        padding-bottom: 10px;
+        margin-top: 32px;
+        margin-bottom: 16px;
+        letter-spacing: 0.3px;
     }
 
     /* File pills */
@@ -98,24 +101,16 @@ st.markdown("""
         line-height: 1.6;
     }
 
-    /* Report container */
-    .report-container {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 14px;
-        padding: 28px 32px;
-        margin-top: 16px;
-    }
-
     /* RAG chunk cards */
     .rag-chunk {
         background: rgba(123,47,247,0.06);
         border-left: 3px solid #7b2ff7;
         border-radius: 0 8px 8px 0;
-        padding: 12px 16px;
-        margin-bottom: 10px;
-        font-size: 0.88rem;
-        color: #b0b8cc;
+        padding: 14px 18px;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+        color: #c0c8dd;
+        line-height: 1.6;
     }
 
     /* Rejected file warning */
@@ -157,28 +152,82 @@ st.markdown("""
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
-    /* Spinner */
-    .stSpinner > div > div {
+    /* Spinner — circle and text */
+    .stSpinner > div > div,
+    [data-testid="stSpinner"] > div > div {
+        border-color: rgba(0,212,255,0.15) !important;
         border-top-color: #00d4ff !important;
     }
-    .stSpinner, .stSpinner > div, .stSpinner span,
-    [data-testid="stSpinner"], [data-testid="stSpinner"] span,
-    [data-testid="stStatusWidget"] span {
+    .stSpinner, .stSpinner *,
+    [data-testid="stSpinner"], [data-testid="stSpinner"] *,
+    [data-testid="stStatusWidget"], [data-testid="stStatusWidget"] * {
         color: #ffffff !important;
     }
 
     /* ── Global text contrast fixes ── */
-    /* Main content text — bright white */
     .stMarkdown p, .stMarkdown li, .stMarkdown td, .stMarkdown th,
     .stMarkdown span, .stMarkdown ol, .stMarkdown ul {
-        color: #ffffff !important;
+        color: #e0e6f0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
     }
-    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
-    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+    .stMarkdown h1 {
         color: #ffffff !important;
+        font-size: 1.75rem !important;
+        font-weight: 700 !important;
+        margin-top: 32px !important;
+        margin-bottom: 12px !important;
+        padding-bottom: 8px !important;
+        border-bottom: 2px solid rgba(0,212,255,0.2) !important;
+    }
+    .stMarkdown h2 {
+        color: #00d4ff !important;
+        font-size: 1.35rem !important;
+        font-weight: 600 !important;
+        margin-top: 28px !important;
+        margin-bottom: 10px !important;
+    }
+    .stMarkdown h3 {
+        color: #7bb8ff !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        margin-top: 20px !important;
+        margin-bottom: 8px !important;
+    }
+    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #a0c4e8 !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        margin-top: 16px !important;
+        margin-bottom: 6px !important;
     }
     .stMarkdown strong, .stMarkdown b {
         color: #ffffff !important;
+    }
+    /* Tables in report */
+    .stMarkdown table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin: 12px 0 !important;
+    }
+    .stMarkdown th {
+        background: rgba(0,212,255,0.1) !important;
+        font-weight: 600 !important;
+        text-align: left !important;
+        padding: 10px 14px !important;
+        border-bottom: 2px solid rgba(0,212,255,0.25) !important;
+    }
+    .stMarkdown td {
+        padding: 8px 14px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+    /* Lists */
+    .stMarkdown ul, .stMarkdown ol {
+        padding-left: 24px !important;
+        margin-bottom: 12px !important;
+    }
+    .stMarkdown li {
+        margin-bottom: 6px !important;
     }
 
     /* Expander header */
@@ -491,7 +540,7 @@ else:
 
         # ── Accepted file pills ──
         st.markdown("")
-        pills_html = "".join(f'<span class="file-pill">{fn}</span>' for fn in accepted_files)
+        pills_html = '<div style="text-align:center;">' + "".join(f'<span class="file-pill">{fn}</span>' for fn in accepted_files) + '</div>'
         st.markdown(pills_html, unsafe_allow_html=True)
 
         # ── Log preview ──
