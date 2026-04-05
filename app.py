@@ -25,41 +25,42 @@ st.markdown("""
 
     /* Header area */
     .hero-title {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
         font-weight: 800;
         background: linear-gradient(135deg, #00d4ff, #7b2ff7);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 0;
+        margin-bottom: 4px;
         text-align: center;
     }
     .hero-subtitle {
-        color: #8899aa;
-        font-size: 1.05rem;
-        margin-top: 4px;
+        color: #b0bdd0;
+        font-size: 1.15rem;
+        margin-top: 0;
         margin-bottom: 28px;
         text-align: center;
+        font-weight: 400;
     }
 
     /* Stat cards row */
     .stat-card {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(0, 20, 50, 0.7);
+        border: 1px solid rgba(0,212,255,0.15);
         border-radius: 12px;
-        padding: 18px 20px;
+        padding: 22px 20px;
         text-align: center;
     }
     .stat-value {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: #00d4ff;
     }
     .stat-label {
-        font-size: 0.82rem;
-        color: #667788;
+        font-size: 0.8rem;
+        color: #8899bb;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        margin-top: 2px;
+        margin-top: 4px;
     }
 
     /* Section headers */
