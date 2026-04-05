@@ -18,237 +18,252 @@ load_dotenv()
 # ── Custom CSS ─────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    /* Global font & background */
+    /* ═══ BASE ═══ */
     .stApp {
         background: linear-gradient(160deg, #0a0e17 0%, #0d1525 40%, #111d2e 100%);
     }
 
-    /* Header area */
-    .hero-title {
-        font-size: 3.2rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #00d4ff, #7b2ff7);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 4px;
-        text-align: center;
+    /* Hide streamlit chrome */
+    #MainMenu, footer, header { visibility: hidden; }
+
+    /* ═══ HERO ═══ */
+    p.hero-title {
+        font-size: 3.4rem !important;
+        font-weight: 800 !important;
+        background: linear-gradient(135deg, #00d4ff, #7b2ff7) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        text-align: center !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
     }
-    .hero-subtitle {
-        color: #b0bdd0;
-        font-size: 1.15rem;
-        margin-top: 0;
-        margin-bottom: 28px;
-        text-align: center;
-        font-weight: 400;
+    p.hero-subtitle {
+        color: #b0bdd0 !important;
+        font-size: 1.15rem !important;
+        text-align: center !important;
+        margin-top: 4px !important;
+        margin-bottom: 28px !important;
+        font-weight: 400 !important;
     }
 
-    /* Stat cards row */
+    /* ═══ STAT CARDS ═══ */
     .stat-card {
-        background: rgba(0, 20, 50, 0.7);
-        border: 1px solid rgba(0,212,255,0.15);
-        border-radius: 12px;
-        padding: 22px 20px;
-        text-align: center;
+        background: rgba(0,20,50,0.7) !important;
+        border: 1px solid rgba(0,212,255,0.15) !important;
+        border-radius: 12px; padding: 22px 20px; text-align: center;
     }
-    .stat-value {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #00d4ff;
+    .stat-card .stat-value {
+        font-size: 1.8rem !important; font-weight: 700 !important; color: #00d4ff !important;
     }
-    .stat-label {
-        font-size: 0.8rem;
-        color: #8899bb;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-top: 4px;
+    .stat-card .stat-label {
+        font-size: 0.8rem !important; color: #8899bb !important;
+        text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px;
     }
 
-    /* Section headers */
+    /* ═══ SECTION HEADERS ═══ */
     .section-header {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #00d4ff;
-        border-bottom: 2px solid rgba(0,212,255,0.25);
-        padding-bottom: 10px;
-        margin-top: 32px;
-        margin-bottom: 16px;
-        letter-spacing: 0.3px;
+        font-size: 1.4rem !important; font-weight: 700 !important; color: #00d4ff !important;
+        border-bottom: 2px solid rgba(0,212,255,0.25) !important;
+        padding-bottom: 10px !important; margin-top: 36px !important; margin-bottom: 18px !important;
     }
 
-    /* File pills */
+    /* ═══ FILE PILLS ═══ */
     .file-pill {
-        display: inline-block;
-        background: rgba(0,212,255,0.10);
-        border: 1px solid rgba(0,212,255,0.25);
-        color: #00d4ff;
-        border-radius: 20px;
-        padding: 5px 14px;
-        margin: 3px 4px;
-        font-size: 0.85rem;
-        font-family: monospace;
+        display: inline-block; background: rgba(0,212,255,0.10);
+        border: 1px solid rgba(0,212,255,0.25); color: #00d4ff !important;
+        border-radius: 20px; padding: 5px 14px; margin: 3px 4px;
+        font-size: 0.85rem; font-family: monospace;
     }
 
-    /* Log viewer */
+    /* ═══ LOG VIEWER ═══ */
     .log-viewer {
-        background: #0b1120;
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: 10px;
-        padding: 16px;
-        font-family: 'SF Mono', 'Fira Code', monospace;
-        font-size: 0.78rem;
-        color: #a0b0c0;
-        max-height: 320px;
-        overflow-y: auto;
-        line-height: 1.6;
+        background: #0b1120; border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 10px; padding: 16px;
+        font-family: 'SF Mono','Fira Code',monospace; font-size: 0.78rem;
+        color: #a0b0c0; max-height: 320px; overflow-y: auto; line-height: 1.6;
     }
 
-    /* RAG chunk cards */
+    /* ═══ RAG CHUNKS ═══ */
     .rag-chunk {
-        background: rgba(123,47,247,0.06);
-        border-left: 3px solid #7b2ff7;
-        border-radius: 0 8px 8px 0;
-        padding: 14px 18px;
-        margin-bottom: 12px;
-        font-size: 0.9rem;
-        color: #c0c8dd;
-        line-height: 1.6;
+        background: rgba(123,47,247,0.06); border-left: 3px solid #7b2ff7;
+        border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 12px;
+        font-size: 0.9rem !important; color: #c0c8dd !important; line-height: 1.6;
     }
 
-    /* Rejected file warning */
+    /* ═══ REJECTED FILE ═══ */
     .rejected-file {
-        background: rgba(255, 75, 75, 0.08);
-        border: 1px solid rgba(255, 75, 75, 0.25);
-        border-radius: 10px;
-        padding: 12px 16px;
-        margin-bottom: 8px;
-        color: #ff6b6b;
+        background: rgba(255,75,75,0.08); border: 1px solid rgba(255,75,75,0.25);
+        border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; color: #ff6b6b;
     }
 
-    /* Button styling */
+    /* ═══ BUTTONS ═══ */
     .stButton > button {
         background: linear-gradient(135deg, #00d4ff, #7b2ff7) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 10px !important;
-        padding: 12px 32px !important;
-        font-weight: 600 !important;
-        font-size: 1rem !important;
-        transition: all 0.3s ease !important;
+        color: white !important; border: none !important; border-radius: 10px !important;
+        padding: 14px 32px !important; font-weight: 600 !important; font-size: 1.05rem !important;
     }
     .stButton > button:hover {
         transform: translateY(-1px) !important;
         box-shadow: 0 6px 20px rgba(0,212,255,0.3) !important;
     }
-
-    /* Download button */
     .stDownloadButton > button {
-        background: rgba(255,255,255,0.06) !important;
-        color: #00d4ff !important;
-        border: 1px solid rgba(0,212,255,0.3) !important;
-        border-radius: 10px !important;
+        background: rgba(255,255,255,0.06) !important; color: #00d4ff !important;
+        border: 1px solid rgba(0,212,255,0.3) !important; border-radius: 10px !important;
     }
 
-    /* Hide default streamlit branding */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-
-    /* Spinner — circle and text */
-    .stSpinner > div > div,
-    [data-testid="stSpinner"] > div > div {
-        border-color: rgba(0,212,255,0.15) !important;
+    /* ═══ SPINNER ═══ */
+    /* The circle */
+    .stApp div[data-testid="stSpinner"] > div > i,
+    .stApp div[data-testid="stSpinner"] > div > div,
+    .stApp .stSpinner > div > div,
+    .stApp .stSpinner > div > i {
+        border-color: rgba(0,212,255,0.2) !important;
         border-top-color: #00d4ff !important;
     }
-    .stSpinner, .stSpinner *,
-    [data-testid="stSpinner"], [data-testid="stSpinner"] *,
-    [data-testid="stStatusWidget"], [data-testid="stStatusWidget"] * {
+    /* The text */
+    .stApp div[data-testid="stSpinner"],
+    .stApp div[data-testid="stSpinner"] > div,
+    .stApp div[data-testid="stSpinner"] > div > span,
+    .stApp div[data-testid="stSpinner"] span,
+    .stApp .stSpinner,
+    .stApp .stSpinner span {
         color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
     }
 
-    /* ── Global text contrast fixes ── */
-    .stMarkdown p, .stMarkdown li, .stMarkdown td, .stMarkdown th,
-    .stMarkdown span, .stMarkdown ol, .stMarkdown ul {
+    /* ═══ REPORT TYPOGRAPHY ═══ */
+    /* Body text */
+    [data-testid="stMarkdownContainer"] p {
+        color: #e0e6f0 !important;
+        font-size: 0.95rem !important;
+        line-height: 1.75 !important;
+    }
+    /* H1 — main report sections */
+    [data-testid="stMarkdownContainer"] h1 {
+        color: #ffffff !important;
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        margin-top: 36px !important;
+        margin-bottom: 14px !important;
+        padding-bottom: 10px !important;
+        border-bottom: 2px solid rgba(0,212,255,0.25) !important;
+    }
+    /* H2 — subsections */
+    [data-testid="stMarkdownContainer"] h2 {
+        color: #00d4ff !important;
+        font-size: 1.45rem !important;
+        font-weight: 600 !important;
+        margin-top: 30px !important;
+        margin-bottom: 12px !important;
+    }
+    /* H3 */
+    [data-testid="stMarkdownContainer"] h3 {
+        color: #7bb8ff !important;
+        font-size: 1.15rem !important;
+        font-weight: 600 !important;
+        margin-top: 24px !important;
+        margin-bottom: 10px !important;
+    }
+    /* H4-H6 */
+    [data-testid="stMarkdownContainer"] h4,
+    [data-testid="stMarkdownContainer"] h5,
+    [data-testid="stMarkdownContainer"] h6 {
+        color: #a0c4e8 !important;
+        font-size: 1.05rem !important;
+        font-weight: 600 !important;
+        margin-top: 18px !important;
+        margin-bottom: 8px !important;
+    }
+    /* Bold */
+    [data-testid="stMarkdownContainer"] strong,
+    [data-testid="stMarkdownContainer"] b {
+        color: #ffffff !important;
+    }
+    /* Lists */
+    [data-testid="stMarkdownContainer"] ul,
+    [data-testid="stMarkdownContainer"] ol {
+        color: #e0e6f0 !important;
+        padding-left: 28px !important;
+        margin-bottom: 14px !important;
+    }
+    [data-testid="stMarkdownContainer"] li {
         color: #e0e6f0 !important;
         font-size: 0.95rem !important;
         line-height: 1.7 !important;
-    }
-    .stMarkdown h1 {
-        color: #ffffff !important;
-        font-size: 1.75rem !important;
-        font-weight: 700 !important;
-        margin-top: 32px !important;
-        margin-bottom: 12px !important;
-        padding-bottom: 8px !important;
-        border-bottom: 2px solid rgba(0,212,255,0.2) !important;
-    }
-    .stMarkdown h2 {
-        color: #00d4ff !important;
-        font-size: 1.35rem !important;
-        font-weight: 600 !important;
-        margin-top: 28px !important;
-        margin-bottom: 10px !important;
-    }
-    .stMarkdown h3 {
-        color: #7bb8ff !important;
-        font-size: 1.1rem !important;
-        font-weight: 600 !important;
-        margin-top: 20px !important;
         margin-bottom: 8px !important;
     }
-    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
-        color: #a0c4e8 !important;
-        font-size: 1rem !important;
-        font-weight: 600 !important;
-        margin-top: 16px !important;
-        margin-bottom: 6px !important;
+    /* Tables */
+    [data-testid="stMarkdownContainer"] table {
+        width: 100% !important; border-collapse: collapse !important; margin: 14px 0 !important;
     }
-    .stMarkdown strong, .stMarkdown b {
-        color: #ffffff !important;
+    [data-testid="stMarkdownContainer"] th {
+        background: rgba(0,212,255,0.1) !important; color: #ffffff !important;
+        font-weight: 600 !important; text-align: left !important; padding: 10px 14px !important;
+        border-bottom: 2px solid rgba(0,212,255,0.25) !important; font-size: 0.9rem !important;
     }
-    /* Tables in report */
-    .stMarkdown table {
-        width: 100% !important;
-        border-collapse: collapse !important;
-        margin: 12px 0 !important;
-    }
-    .stMarkdown th {
-        background: rgba(0,212,255,0.1) !important;
-        font-weight: 600 !important;
-        text-align: left !important;
-        padding: 10px 14px !important;
-        border-bottom: 2px solid rgba(0,212,255,0.25) !important;
-    }
-    .stMarkdown td {
-        padding: 8px 14px !important;
-        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
-    }
-    /* Lists */
-    .stMarkdown ul, .stMarkdown ol {
-        padding-left: 24px !important;
-        margin-bottom: 12px !important;
-    }
-    .stMarkdown li {
-        margin-bottom: 6px !important;
+    [data-testid="stMarkdownContainer"] td {
+        color: #d0d8e8 !important; padding: 8px 14px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important; font-size: 0.9rem !important;
     }
 
-    /* Expander header */
+    /* ═══ HERO OVERRIDES — must beat [data-testid] p ═══ */
+    [data-testid="stMarkdownContainer"] p.hero-title {
+        font-size: 3.4rem !important;
+        font-weight: 800 !important;
+        background: linear-gradient(135deg, #00d4ff, #7b2ff7) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        text-align: center !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
+        border: none !important;
+    }
+    [data-testid="stMarkdownContainer"] p.hero-subtitle {
+        color: #b0bdd0 !important;
+        -webkit-text-fill-color: #b0bdd0 !important;
+        font-size: 1.15rem !important;
+        text-align: center !important;
+        margin-top: 4px !important;
+        margin-bottom: 28px !important;
+        font-weight: 400 !important;
+        border: none !important;
+    }
+    /* Stat card inner elements — beat global p/span */
+    [data-testid="stMarkdownContainer"] .stat-card .stat-value {
+        font-size: 1.8rem !important; color: #00d4ff !important;
+        -webkit-text-fill-color: #00d4ff !important; line-height: 1.3 !important;
+    }
+    [data-testid="stMarkdownContainer"] .stat-card .stat-label {
+        font-size: 0.8rem !important; color: #8899bb !important;
+        -webkit-text-fill-color: #8899bb !important;
+    }
+    /* Section header — beat global p */
+    [data-testid="stMarkdownContainer"] .section-header {
+        font-size: 1.4rem !important; font-weight: 700 !important; color: #00d4ff !important;
+        -webkit-text-fill-color: #00d4ff !important;
+        border-bottom: 2px solid rgba(0,212,255,0.25) !important;
+        padding-bottom: 10px !important; margin-top: 36px !important; margin-bottom: 18px !important;
+    }
+    /* File pill — beat global span */
+    [data-testid="stMarkdownContainer"] .file-pill {
+        font-size: 0.85rem !important; color: #00d4ff !important;
+        -webkit-text-fill-color: #00d4ff !important;
+    }
+
+    /* ═══ EXPANDER ═══ */
     [data-testid="stExpander"] summary span,
     [data-testid="stExpander"] summary p {
         color: #ffffff !important;
     }
-    /* Expander body text */
-    [data-testid="stExpander"] [data-testid="stMarkdownContainer"] p {
-        color: #ffffff !important;
-    }
 
-    /* File uploader — light text for file list area */
+    /* ═══ FILE UPLOADER ═══ */
     [data-testid="stFileUploader"] span,
     [data-testid="stFileUploader"] small,
     [data-testid="stFileUploader"] p,
-    [data-testid="stFileUploader"] div {
+    [data-testid="stFileUploader"] > div > div:not([data-testid="stFileUploaderDropzone"]) div {
         color: #c0d0e0 !important;
     }
-    /* Dropzone — revert to native dark-on-light */
+    /* Dropzone — keep native dark-on-light */
     [data-testid="stFileUploaderDropzone"],
     [data-testid="stFileUploaderDropzone"] span,
     [data-testid="stFileUploaderDropzone"] small,
@@ -257,15 +272,11 @@ st.markdown("""
         color: unset !important;
     }
 
-    /* Info / warning / success / error boxes — keep native colors */
-    .stAlert p, .stAlert span {
-        color: inherit !important;
-    }
+    /* ═══ ALERTS — keep native colors ═══ */
+    .stAlert p, .stAlert span { color: inherit !important; }
 
-    /* Caption text */
-    .stCaption p, .stCaption span {
-        color: #aabbcc !important;
-    }
+    /* ═══ CAPTION ═══ */
+    .stCaption p, .stCaption span { color: #aabbcc !important; }
 </style>
 """, unsafe_allow_html=True)
 
