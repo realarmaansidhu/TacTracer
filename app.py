@@ -163,29 +163,48 @@ st.markdown("""
     }
 
     /* ── Global text contrast fixes ── */
-    .stApp, .stApp p, .stApp li, .stApp span, .stApp td, .stApp th,
-    .stApp label, .stMarkdown, .stMarkdown p, .stMarkdown li {
+    /* Main content text — bright white */
+    .stMarkdown p, .stMarkdown li, .stMarkdown td, .stMarkdown th,
+    .stMarkdown span, .stMarkdown ol, .stMarkdown ul {
         color: #ffffff !important;
     }
-    .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
+    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
         color: #ffffff !important;
     }
-    .stApp strong, .stApp b {
-        color: #ffffff !important;
-    }
-
-    /* Expander text */
-    .streamlit-expanderHeader, .streamlit-expanderHeader p {
+    .stMarkdown strong, .stMarkdown b {
         color: #ffffff !important;
     }
 
-    /* Info / warning / success / error boxes */
-    .stAlert p {
+    /* Expander header */
+    [data-testid="stExpander"] summary span,
+    [data-testid="stExpander"] summary p {
+        color: #ffffff !important;
+    }
+    /* Expander body text */
+    [data-testid="stExpander"] [data-testid="stMarkdownContainer"] p {
+        color: #ffffff !important;
+    }
+
+    /* File uploader — keep its own dark text on light bg */
+    [data-testid="stFileUploader"] span,
+    [data-testid="stFileUploader"] small,
+    [data-testid="stFileUploader"] button,
+    [data-testid="stFileUploader"] p,
+    [data-testid="stFileUploaderDropzone"] span,
+    [data-testid="stFileUploaderDropzone"] small,
+    [data-testid="stFileUploaderFile"] span,
+    [data-testid="stFileUploaderFile"] small {
+        color: unset !important;
+    }
+
+    /* Info / warning / success / error boxes — keep native colors */
+    .stAlert p, .stAlert span {
         color: inherit !important;
     }
 
     /* Caption text */
-    .stCaption, .stCaption p {
+    .stCaption p, .stCaption span {
         color: #aabbcc !important;
     }
 </style>
