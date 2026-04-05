@@ -186,38 +186,26 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* File uploader — dropzone keeps dark text on its light bg */
-    [data-testid="stFileUploaderDropzone"] span,
-    [data-testid="stFileUploaderDropzone"] small,
-    [data-testid="stFileUploaderDropzone"] button {
+    /* File uploader — everything outside the dropzone gets light text */
+    [data-testid="stFileUploader"] * {
+        color: #c0d0e0 !important;
+    }
+    [data-testid="stFileUploader"] svg,
+    [data-testid="stFileUploader"] path {
+        color: #c0d0e0 !important;
+        fill: #c0d0e0 !important;
+        stroke: #c0d0e0 !important;
+    }
+    /* Dropzone itself — revert to its own dark-on-light styling */
+    [data-testid="stFileUploaderDropzone"],
+    [data-testid="stFileUploaderDropzone"] * {
         color: unset !important;
     }
-
-    /* File list area outside dropzone — light text on dark bg */
-    [data-testid="stFileUploader"] small {
-        color: #99aabb !important;
-    }
-    /* File names */
-    [data-testid="stFileUploaderFile"] span {
-        color: #d0dae8 !important;
-    }
-    /* File size badges */
-    [data-testid="stFileUploaderFile"] small {
-        color: #88aacc !important;
-    }
-    /* X delete buttons and < > pagination arrows */
-    [data-testid="stFileUploader"] button[kind="icon"],
-    [data-testid="stFileUploader"] button[data-testid] svg,
-    [data-testid="stFileUploaderDeleteBtn"],
-    [data-testid="stFileUploader"] svg {
-        color: #99aabb !important;
-        fill: #99aabb !important;
-    }
-    [data-testid="stFileUploader"] button[kind="icon"]:hover svg,
-    [data-testid="stFileUploaderDeleteBtn"]:hover,
-    [data-testid="stFileUploader"] svg:hover {
-        color: #ffffff !important;
-        fill: #ffffff !important;
+    [data-testid="stFileUploaderDropzone"] svg,
+    [data-testid="stFileUploaderDropzone"] path {
+        color: unset !important;
+        fill: unset !important;
+        stroke: unset !important;
     }
 
     /* Info / warning / success / error boxes — keep native colors */
@@ -536,10 +524,6 @@ else:
 
                     # ── Report display ──
                     st.markdown('<div class="section-header">Forensic Report</div>', unsafe_allow_html=True)
-                    st.markdown(
-                        f'<div class="report-container">{st.empty()}</div>',
-                        unsafe_allow_html=True,
-                    )
                     st.markdown(report_text)
 
                     st.caption(f"Report saved to `{report_path}`")
