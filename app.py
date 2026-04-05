@@ -186,16 +186,38 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* File uploader — keep its own dark text on light bg */
-    [data-testid="stFileUploader"] span,
-    [data-testid="stFileUploader"] small,
-    [data-testid="stFileUploader"] button,
-    [data-testid="stFileUploader"] p,
+    /* File uploader — dropzone keeps dark text on its light bg */
     [data-testid="stFileUploaderDropzone"] span,
     [data-testid="stFileUploaderDropzone"] small,
-    [data-testid="stFileUploaderFile"] span,
-    [data-testid="stFileUploaderFile"] small {
+    [data-testid="stFileUploaderDropzone"] button {
         color: unset !important;
+    }
+
+    /* File list area outside dropzone — light text on dark bg */
+    [data-testid="stFileUploader"] small {
+        color: #99aabb !important;
+    }
+    /* File names */
+    [data-testid="stFileUploaderFile"] span {
+        color: #d0dae8 !important;
+    }
+    /* File size badges */
+    [data-testid="stFileUploaderFile"] small {
+        color: #88aacc !important;
+    }
+    /* X delete buttons and < > pagination arrows */
+    [data-testid="stFileUploader"] button[kind="icon"],
+    [data-testid="stFileUploader"] button[data-testid] svg,
+    [data-testid="stFileUploaderDeleteBtn"],
+    [data-testid="stFileUploader"] svg {
+        color: #99aabb !important;
+        fill: #99aabb !important;
+    }
+    [data-testid="stFileUploader"] button[kind="icon"]:hover svg,
+    [data-testid="stFileUploaderDeleteBtn"]:hover,
+    [data-testid="stFileUploader"] svg:hover {
+        color: #ffffff !important;
+        fill: #ffffff !important;
     }
 
     /* Info / warning / success / error boxes — keep native colors */
