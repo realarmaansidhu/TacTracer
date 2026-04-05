@@ -12,7 +12,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
 from langchain_huggingface import HuggingFaceEmbeddings
 
-st.set_page_config(page_title="TacTracer", page_icon="🛡️", layout="wide")
+st.set_page_config(page_title="TacTracer", page_icon="🔬", layout="wide")
 load_dotenv()
 
 # ── Custom CSS ─────────────────────────────────────────────────────────────
@@ -639,8 +639,13 @@ else:
                     # ── RAG context expander ──
                     with st.expander("View Retrieved MITRE ATT&CK Context (RAG Chunks)"):
                         for i, doc in enumerate(retrieved_docs, 1):
+                            # Strip category headers (lines starting with =) from display
+                            clean = "\n".join(
+                                line for line in doc.page_content.splitlines()
+                                if not line.strip().startswith("=")
+                            ).strip()
                             st.markdown(
-                                f'<div class="rag-chunk"><strong>Chunk {i}</strong><br>{doc.page_content}</div>',
+                                f'<div class="rag-chunk"><strong>Chunk {i}</strong><br>{clean}</div>',
                                 unsafe_allow_html=True,
                             )
 

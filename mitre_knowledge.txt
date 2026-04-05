@@ -1,7 +1,7 @@
 MITRE ATT&CK Framework for IoT, ICS & Botnet Threats — Knowledge Base
 ======================================================================
 
-## Initial Access Techniques
+=Initial Access Techniques
 
 Technique: T1190 - Exploit Public-Facing Application
 Description: Attackers scan for open HTTP ports (80, 8080, 81, 8000) to exploit vulnerabilities in IoT web interfaces such as router admin panels, IP cameras, and smart home hubs. Common targets include unpatched firmware with known CVEs allowing remote code execution or authentication bypass.
@@ -18,7 +18,7 @@ Description: Adversaries may obtain and abuse credentials of existing accounts t
 Technique: T1199 - Trusted Relationship
 Description: Adversaries may exploit trusted relationships between IoT devices and cloud management platforms. Compromising one device's cloud credentials can grant access to an entire fleet of managed IoT endpoints.
 
-## Execution Techniques
+=Execution Techniques
 
 Technique: T1059.004 - Command and Scripting Interpreter: Unix Shell
 Description: Mirai, Hajime, and similar IoT botnets use default credentials on ports 23 (Telnet) and 2323 to gain initial access and execute shell commands. Once access is obtained, shell commands are used to download and execute the malware payload, often using wget or curl from a staging server.
@@ -29,7 +29,7 @@ Description: Some advanced IoT threats use Python or MicroPython interpreters pr
 Technique: T1047 - Windows Management Instrumentation
 Description: In mixed IoT/OT environments where Windows-based SCADA or HMI systems are present, adversaries may use WMI for remote execution of commands on ICS workstations connected to the IoT network.
 
-## Persistence Techniques
+=Persistence Techniques
 
 Technique: T1053.003 - Scheduled Task/Job: Cron
 Description: After compromising an IoT device running Linux, adversaries may create cron jobs to maintain persistence across reboots. This ensures the botnet malware restarts automatically.
@@ -40,7 +40,7 @@ Description: Sophisticated attackers may modify IoT device firmware to embed per
 Technique: T1205 - Traffic Signaling
 Description: Adversaries may use port knocking or other traffic signaling techniques to activate dormant backdoors on compromised IoT devices, making detection more difficult for network monitoring tools.
 
-## Credential Access Techniques
+=Credential Access Techniques
 
 Technique: T1110 - Brute Force
 Description: Threat actors use automated scripts to systematically guess passwords on SSH (port 22) or Telnet (port 23, 2323) services to gain administrative access to headless IoT devices. Tools like Hydra and Medusa are commonly used. High-frequency connection attempts from a single source IP to port 22 or 23 are strong indicators of brute force activity.
@@ -54,7 +54,7 @@ Description: Adversaries try a small number of commonly used passwords (e.g., ad
 Technique: T1040 - Network Sniffing
 Description: Adversaries may sniff network traffic on IoT networks to capture credentials transmitted in cleartext, particularly common with legacy industrial protocols (Modbus, BACnet) that lack encryption.
 
-## Discovery Techniques
+=Discovery Techniques
 
 Technique: T1046 - Network Service Scanning
 Description: Adversaries scan networks to discover IoT devices and their exposed services. Tools like Nmap, Masscan, or custom scanners identify open ports (22, 23, 80, 443, 8080, 8443, 554, 1883, 5683) to map potential attack surfaces. Rapid sequential connections to multiple ports from a single source indicate scanning activity.
@@ -65,7 +65,7 @@ Description: After gaining initial access to one IoT device, adversaries perform
 Technique: T1082 - System Information Discovery
 Description: Adversaries gather information about compromised IoT devices including firmware version, CPU architecture (ARM, MIPS), available memory, and running services to select appropriate malware payloads.
 
-## Lateral Movement Techniques
+=Lateral Movement Techniques
 
 Technique: T1021.004 - Remote Services: SSH
 Description: Adversaries use compromised SSH credentials to move laterally between IoT devices, Linux gateways, and edge servers. SSH-based lateral movement is often seen in attacks targeting IoT management infrastructure.
@@ -76,7 +76,7 @@ Description: Adversaries may use valid accounts to log into services such as Tel
 Technique: T1210 - Exploitation of Remote Services
 Description: Adversaries may exploit vulnerabilities in services running on IoT devices (e.g., UPnP, MQTT, CoAP) to gain access to additional devices on the network.
 
-## Command and Control Techniques
+=Command and Control Techniques
 
 Technique: T1071.001 - Application Layer Protocol: Web Protocols
 Description: Malware uses standard HTTP/HTTPS traffic (ports 80/443) to communicate with external Command and Control (C2) servers, blending in with benign web traffic. Periodic HTTP beacons at regular intervals (e.g., every 60 seconds) to the same external IP are a hallmark of C2 communication.
@@ -96,7 +96,7 @@ Description: Adversaries may communicate using a protocol on a non-standard port
 Technique: T1132 - Data Encoding
 Description: Adversaries may encode C2 communications in Base64 or custom encoding schemes to evade content inspection. IoT malware frequently uses XOR-encoded payloads in C2 traffic.
 
-## Collection & Exfiltration Techniques
+=Collection & Exfiltration Techniques
 
 Technique: T1119 - Automated Collection
 Description: IoT malware may automatically collect device configuration files, stored credentials, network topology information, and sensor data for exfiltration to C2 servers.
@@ -107,7 +107,7 @@ Description: Adversaries may exfiltrate data from compromised IoT devices over t
 Technique: T1048 - Exfiltration Over Alternative Protocol
 Description: Adversaries may use protocols like DNS, ICMP, or MQTT to exfiltrate data from IoT environments, as these protocols often receive less scrutiny from network monitoring tools.
 
-## Impact Techniques
+=Impact Techniques
 
 Technique: T1498 - Network Denial of Service
 Description: Compromised IoT devices are frequently clustered into botnets to launch high-volume DDoS attacks. UDP floods, TCP SYN floods, and HTTP floods are common attack types. The Mirai botnet demonstrated this capability with attacks exceeding 1 Tbps using hundreds of thousands of compromised IoT devices.
@@ -124,7 +124,7 @@ Description: In ICS/IoT environments, adversaries may corrupt sensor data, delet
 Technique: T1489 - Service Stop
 Description: Adversaries may stop critical services on IoT gateways or edge devices to disrupt monitoring, data collection, or safety systems in industrial environments.
 
-## Resource Development & Staging
+=Resource Development & Staging
 
 Technique: T1105 - Ingress Tool Transfer
 Description: After gaining initial access, adversaries download secondary payloads (like the actual botnet malware binary) from a remote staging server using HTTP, FTP, or TFTP. Common patterns include wget or curl commands to download architecture-specific ELF binaries (ARM, MIPS, x86) immediately after Telnet/SSH access.
@@ -132,7 +132,7 @@ Description: After gaining initial access, adversaries download secondary payloa
 Technique: T1588.005 - Obtain Capabilities: Exploits
 Description: Botnet operators actively collect and integrate public IoT exploits into their malware to expand infection capabilities. Known CVEs for routers, cameras, and DVRs are weaponized within days of public disclosure.
 
-## IoT-Specific & ICS Techniques
+=IoT-Specific & ICS Techniques
 
 Technique: T0883 - Internet Accessible Device (ICS)
 Description: ICS and IoT devices directly accessible from the internet without proper network segmentation are prime targets. Shodan and Censys searches regularly reveal thousands of exposed SCADA systems, PLCs, and IoT management interfaces.
@@ -152,7 +152,7 @@ Description: By manipulating ICS/IoT actuators, adversaries can cause physical d
 Technique: T0816 - Device Restart/Shutdown (ICS)
 Description: Adversaries may forcefully restart or shut down IoT/ICS devices to disrupt operations. Repeated device reboots can mask malicious activity or serve as a denial of service.
 
-## Botnet-Specific Behaviors
+=Botnet-Specific Behaviors
 
 Botnet: Mirai
 Description: Mirai is the most prolific IoT botnet family. It targets devices via Telnet (ports 23, 2323) using a dictionary of 60+ default credential pairs. After infection, it downloads architecture-specific binaries, kills competing malware, and reports to a C2 server. Primary capability is launching DDoS attacks (UDP flood, TCP SYN flood, HTTP flood). Variants include Satori, Masuta, and Okiru.
@@ -172,7 +172,7 @@ Description: Torii is a sophisticated IoT botnet that uses multiple layers of pe
 Botnet: Dark Nexus
 Description: Dark Nexus is an IoT botnet that borrows code from both Mirai and Qbot. It uses a reputation-based scoring system to maintain persistence and eliminates competing malware. It primarily targets routers and video recorders via Telnet credential stuffing.
 
-## Network Traffic Indicators
+=Network Traffic Indicators
 
 Indicator: Telnet Scanning
 Description: Multiple rapid connection attempts to ports 23 or 2323 from a single source IP, especially with connection state S0 (SYN sent, no reply) or REJ (rejected), indicate Mirai-style scanning for vulnerable IoT devices.
@@ -198,7 +198,7 @@ Description: A single source IP connecting to multiple destination ports in rapi
 Indicator: Data Exfiltration
 Description: Unusually large outbound data transfers from IoT devices, especially to unknown external IPs or over non-standard protocols, may indicate data exfiltration. IoT devices typically have predictable, low-volume traffic patterns.
 
-## Common Vulnerable Ports in IoT
+=Common Vulnerable Ports in IoT
 
 Port 23 (Telnet): Primary attack vector for Mirai and similar botnets. Unencrypted remote access.
 Port 2323 (Alt Telnet): Alternative Telnet port commonly used by IoT devices, also targeted by Mirai.
