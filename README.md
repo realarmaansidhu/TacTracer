@@ -39,19 +39,21 @@ Upload Logs ──> Guardrails ──> FAISS Vector Search ──> LLM Analysis 
 
 ## MITRE ATT&CK Coverage
 
-The knowledge base covers the full attack lifecycle with 50+ techniques:
+The knowledge base covers the full attack lifecycle with 67 techniques across 14 categories:
 
-- **Initial Access** — T1190, T1133, T1078, T1199
-- **Execution** — T1059.004, T1059.006, T1047
-- **Persistence** — T1053.003, T1542.001, T1205
-- **Credential Access** — T1110, T1110.001, T1110.003, T1040
-- **Discovery** — T1046, T1018, T1082
-- **Lateral Movement** — T1021, T1021.004, T1210
-- **Command & Control** — T1071.001, T1071.004, T1573, T1095, T1571, T1132
-- **Collection & Exfiltration** — T1119, T1041, T1048
-- **Impact** — T1498, T1498.001, T1499, T1485, T1489
+- **Initial Access** — T1190, T1133, T1078, T1199, T1566, T0847
+- **Execution** — T1059.004, T1059.006, T1047, T1059.001, T1203, T1106
+- **Persistence** — T1053.003, T1542.001, T1205, T1547, T1574, T1037, T0866
+- **Credential Access** — T1110, T1110.001, T1110.003, T1040, T1555, T1552, T1003
+- **Discovery** — T1046, T1018, T1082, T1049, T1069, T1016
+- **Lateral Movement** — T1021, T1021.004, T1210, T1563, T1570
+- **Command & Control** — T1071.001, T1071.004, T1573, T1095, T1571, T1132, T1090, T1001, T1568
+- **Collection & Exfiltration** — T1119, T1041, T1048, T1074, T1020
+- **Impact** — T1498, T1498.001, T1499, T1485, T1489, T1529, T1565
 - **ICS-Specific** — T0883, T0855, T0859, T0814, T0879, T0816
 - **Botnet Profiles** — Mirai, Hajime, Mozi, Bashlite, Torii, Dark Nexus
+- **Network Traffic Indicators** — Telnet scanning, SSH brute force, C2 beaconing, DNS tunneling, and more
+- **Common Vulnerable Ports** — 23, 2323, 22, 80, 443, 8080, 1883, 5683, 502, 554, 161
 
 ---
 

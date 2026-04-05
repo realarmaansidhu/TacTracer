@@ -18,6 +18,12 @@ Description: Adversaries may obtain and abuse credentials of existing accounts t
 Technique: T1199 - Trusted Relationship
 Description: Adversaries may exploit trusted relationships between IoT devices and cloud management platforms. Compromising one device's cloud credentials can grant access to an entire fleet of managed IoT endpoints.
 
+Technique: T1566 - Phishing
+Description: Adversaries may send phishing messages targeting IoT device administrators or OT engineers to steal credentials for device management portals, SCADA systems, or cloud-based IoT platforms. Spear-phishing with malicious attachments or credential harvesting links is used to compromise accounts that control entire fleets of IoT devices.
+
+Technique: T0847 - Exploit Public-Facing Application (ICS)
+Description: Adversaries may exploit vulnerabilities in internet-accessible ICS web interfaces, HMI dashboards, or IoT device management portals. These applications often run outdated software with known CVEs and are discoverable through Shodan or Censys searches.
+
 =Execution Techniques
 
 Technique: T1059.004 - Command and Scripting Interpreter: Unix Shell
@@ -29,6 +35,15 @@ Description: Some advanced IoT threats use Python or MicroPython interpreters pr
 Technique: T1047 - Windows Management Instrumentation
 Description: In mixed IoT/OT environments where Windows-based SCADA or HMI systems are present, adversaries may use WMI for remote execution of commands on ICS workstations connected to the IoT network.
 
+Technique: T1059.001 - Command and Scripting Interpreter: PowerShell
+Description: In hybrid IoT/IT environments, adversaries may use PowerShell on Windows-based IoT gateways, SCADA workstations, or HMI systems to execute malicious scripts, download payloads, or interact with IoT management APIs. PowerShell provides extensive system access and is often available on engineering workstations connected to OT networks.
+
+Technique: T1203 - Exploitation for Client Execution
+Description: Adversaries may exploit vulnerabilities in client applications running on IoT management workstations, such as browser-based device dashboards or firmware update utilities, to execute malicious code. This can serve as a pivot point into the IoT network from the IT side.
+
+Technique: T1106 - Native API
+Description: Adversaries may use native operating system APIs on compromised IoT devices to execute malicious actions, interact with the file system, spawn processes, or manipulate network interfaces. Linux-based IoT devices expose standard POSIX APIs that malware can leverage directly without requiring additional tools.
+
 =Persistence Techniques
 
 Technique: T1053.003 - Scheduled Task/Job: Cron
@@ -39,6 +54,18 @@ Description: Sophisticated attackers may modify IoT device firmware to embed per
 
 Technique: T1205 - Traffic Signaling
 Description: Adversaries may use port knocking or other traffic signaling techniques to activate dormant backdoors on compromised IoT devices, making detection more difficult for network monitoring tools.
+
+Technique: T1547 - Boot or Logon Autostart Execution
+Description: Adversaries may configure IoT device malware to execute automatically at boot by modifying init scripts, systemd services, or rc.local files on Linux-based IoT devices. This ensures persistence across power cycles, which is critical for maintaining botnet membership in devices that may be rebooted frequently.
+
+Technique: T1574 - Hijack Execution Flow
+Description: Adversaries may manipulate the way IoT devices load and execute programs by hijacking library paths, replacing legitimate binaries, or modifying environment variables. On resource-constrained IoT devices with minimal integrity checking, execution flow hijacking is particularly effective.
+
+Technique: T1037 - Boot or Logon Initialization Scripts
+Description: Adversaries may place malicious startup scripts on compromised IoT devices to maintain persistence. Linux-based IoT devices commonly use /etc/init.d/, /etc/rc.local, or systemd unit files for startup, which attackers can modify to reload malware after reboots.
+
+Technique: T0866 - Modify System Configuration (ICS)
+Description: Adversaries may modify the configuration of ICS or IoT devices to maintain persistence, disable security features, or alter device behavior. Changes to PLC logic, sensor calibration, or network settings can persist across reboots and may go undetected without configuration monitoring.
 
 =Credential Access Techniques
 
@@ -54,6 +81,15 @@ Description: Adversaries try a small number of commonly used passwords (e.g., ad
 Technique: T1040 - Network Sniffing
 Description: Adversaries may sniff network traffic on IoT networks to capture credentials transmitted in cleartext, particularly common with legacy industrial protocols (Modbus, BACnet) that lack encryption.
 
+Technique: T1555 - Credentials from Password Stores
+Description: Adversaries may search for and extract credentials stored on compromised IoT devices or management workstations, including saved Wi-Fi passwords, VPN credentials, cloud API tokens, and device management credentials stored in configuration files or local databases.
+
+Technique: T1552 - Unsecured Credentials
+Description: IoT devices frequently store credentials in plaintext configuration files, hardcoded in firmware, embedded in scripts, or in environment variables. Adversaries can extract these credentials by dumping device file systems, reading /etc/passwd, or analysing firmware images to discover API keys, MQTT broker passwords, and cloud platform tokens.
+
+Technique: T1003 - OS Credential Dumping
+Description: Adversaries may dump credentials from compromised IoT gateways or edge servers running Linux by accessing /etc/shadow, extracting SSH keys from ~/.ssh/, or harvesting credentials from memory. On Windows-based SCADA workstations, tools like Mimikatz may be used to extract domain credentials.
+
 =Discovery Techniques
 
 Technique: T1046 - Network Service Scanning
@@ -65,6 +101,15 @@ Description: After gaining initial access to one IoT device, adversaries perform
 Technique: T1082 - System Information Discovery
 Description: Adversaries gather information about compromised IoT devices including firmware version, CPU architecture (ARM, MIPS), available memory, and running services to select appropriate malware payloads.
 
+Technique: T1049 - System Network Connections Discovery
+Description: Adversaries may enumerate active network connections on compromised IoT devices using commands like netstat, ss, or /proc/net/tcp to identify other connected devices, active C2 channels, or services communicating over the network. This information guides lateral movement and helps identify high-value targets.
+
+Technique: T1069 - Permission Groups Discovery
+Description: Adversaries may attempt to identify permission groups and user roles on compromised IoT management platforms or edge servers to determine which accounts have elevated privileges for device administration, firmware updates, or network configuration changes.
+
+Technique: T1016 - System Network Configuration Discovery
+Description: Adversaries may collect network configuration details from compromised IoT devices including IP addresses, routing tables, DNS servers, VLAN assignments, and firewall rules. This information reveals network segmentation (or lack thereof) and helps plan lateral movement between IT and OT network zones.
+
 =Lateral Movement Techniques
 
 Technique: T1021.004 - Remote Services: SSH
@@ -75,6 +120,12 @@ Description: Adversaries may use valid accounts to log into services such as Tel
 
 Technique: T1210 - Exploitation of Remote Services
 Description: Adversaries may exploit vulnerabilities in services running on IoT devices (e.g., UPnP, MQTT, CoAP) to gain access to additional devices on the network.
+
+Technique: T1563 - Remote Service Session Hijacking
+Description: Adversaries may hijack active SSH, Telnet, or web management sessions on IoT devices to take over authenticated connections without needing credentials. Session hijacking is effective in IoT environments where session tokens are weakly generated or transmitted over unencrypted channels.
+
+Technique: T1570 - Lateral Tool Transfer
+Description: Adversaries may transfer malware or tools between compromised IoT devices on the internal network using protocols like SCP, TFTP, or netcat. This allows propagation of botnet binaries without requiring each device to download from an external staging server, reducing external network indicators.
 
 =Command and Control Techniques
 
@@ -96,6 +147,15 @@ Description: Adversaries may communicate using a protocol on a non-standard port
 Technique: T1132 - Data Encoding
 Description: Adversaries may encode C2 communications in Base64 or custom encoding schemes to evade content inspection. IoT malware frequently uses XOR-encoded payloads in C2 traffic.
 
+Technique: T1090 - Proxy
+Description: Adversaries may use compromised IoT devices as proxy servers to relay C2 traffic, making it harder to trace the origin of malicious communications. IoT devices with persistent internet connections and minimal monitoring are ideal proxy nodes. Multi-hop proxy chains through compromised routers and cameras are common in advanced botnet architectures.
+
+Technique: T1001 - Data Obfuscation
+Description: Adversaries may obfuscate C2 traffic from compromised IoT devices by embedding commands within seemingly legitimate protocol data, using steganography, or padding traffic to mimic normal device communication patterns. This makes detection by network monitoring tools significantly more difficult.
+
+Technique: T1568 - Dynamic Resolution
+Description: Adversaries may use dynamic DNS services, domain generation algorithms (DGAs), or fast-flux DNS to dynamically resolve C2 server addresses, making takedown efforts more difficult. IoT botnets like Mirai variants frequently use DGAs to generate hundreds of potential C2 domains daily.
+
 =Collection & Exfiltration Techniques
 
 Technique: T1119 - Automated Collection
@@ -106,6 +166,12 @@ Description: Adversaries may exfiltrate data from compromised IoT devices over t
 
 Technique: T1048 - Exfiltration Over Alternative Protocol
 Description: Adversaries may use protocols like DNS, ICMP, or MQTT to exfiltrate data from IoT environments, as these protocols often receive less scrutiny from network monitoring tools.
+
+Technique: T1074 - Data Staged
+Description: Adversaries may stage collected data in a central location on a compromised IoT device or gateway before exfiltration. Collected credentials, configuration files, and sensor data may be aggregated in /tmp or other writable directories before being exfiltrated in bulk to minimise the number of outbound connections.
+
+Technique: T1020 - Automated Exfiltration
+Description: Adversaries may configure compromised IoT devices to automatically exfiltrate collected data at regular intervals or when certain conditions are met. Automated exfiltration scripts running as cron jobs can periodically send harvested credentials, network maps, or sensor readings to C2 infrastructure without manual intervention.
 
 =Impact Techniques
 
@@ -123,6 +189,12 @@ Description: In ICS/IoT environments, adversaries may corrupt sensor data, delet
 
 Technique: T1489 - Service Stop
 Description: Adversaries may stop critical services on IoT gateways or edge devices to disrupt monitoring, data collection, or safety systems in industrial environments.
+
+Technique: T1529 - System Shutdown/Reboot
+Description: Adversaries may shut down or reboot compromised IoT/ICS devices to disrupt operations, clear volatile evidence from memory, or trigger denial of service conditions. In critical infrastructure environments, unexpected device reboots can cascade into safety incidents affecting physical processes.
+
+Technique: T1565 - Data Manipulation
+Description: Adversaries may manipulate data on IoT sensors or ICS devices to alter readings, falsify measurements, or corrupt operational data. In industrial environments, manipulated sensor data can lead to incorrect automated responses, equipment damage, or safety hazards. This is particularly dangerous in SCADA systems where operators rely on sensor data for decision-making.
 
 =Resource Development & Staging
 
