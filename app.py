@@ -259,36 +259,38 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* ═══ FILE UPLOADER ═══ */
-    [data-testid="stFileUploader"] span,
-    [data-testid="stFileUploader"] small,
-    [data-testid="stFileUploader"] p,
-    [data-testid="stFileUploader"] > div > div:not([data-testid="stFileUploaderDropzone"]) div {
-        color: #c0d0e0 !important;
-        font-size: 0.95rem !important;
+    /* ═══ FILE UPLOADER — NUCLEAR: everything white ═══ */
+    [data-testid="stFileUploader"],
+    [data-testid="stFileUploader"] * {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
     }
-    /* X delete buttons — white */
-    [data-testid="stFileUploader"] button[kind="icon"],
-    [data-testid="stFileUploader"] button[aria-label="Delete file"] {
+    /* SVGs (X buttons, arrows, file icons) */
+    [data-testid="stFileUploader"] svg {
         color: #ffffff !important;
     }
-    [data-testid="stFileUploader"] button[kind="icon"] svg,
-    [data-testid="stFileUploader"] button[aria-label="Delete file"] svg {
+    [data-testid="stFileUploader"] svg line,
+    [data-testid="stFileUploader"] svg polyline,
+    [data-testid="stFileUploader"] svg path,
+    [data-testid="stFileUploader"] svg circle,
+    [data-testid="stFileUploader"] svg rect,
+    [data-testid="stFileUploader"] svg polygon {
         stroke: #ffffff !important;
     }
-    /* Pagination arrows */
-    [data-testid="stFileUploader"] button[aria-label*="page"] svg,
-    [data-testid="stFileUploader"] button[aria-label*="Page"] svg {
-        stroke: #ffffff !important;
-    }
-    /* Dropzone — keep native dark-on-light */
+    /* Dropzone — revert EVERYTHING back to native */
     [data-testid="stFileUploaderDropzone"],
-    [data-testid="stFileUploaderDropzone"] span,
-    [data-testid="stFileUploaderDropzone"] small,
-    [data-testid="stFileUploaderDropzone"] p,
-    [data-testid="stFileUploaderDropzone"] div {
+    [data-testid="stFileUploaderDropzone"] * {
         color: unset !important;
-        font-size: unset !important;
+        -webkit-text-fill-color: unset !important;
+    }
+    [data-testid="stFileUploaderDropzone"] svg,
+    [data-testid="stFileUploaderDropzone"] svg line,
+    [data-testid="stFileUploaderDropzone"] svg polyline,
+    [data-testid="stFileUploaderDropzone"] svg path,
+    [data-testid="stFileUploaderDropzone"] svg circle,
+    [data-testid="stFileUploaderDropzone"] svg rect,
+    [data-testid="stFileUploaderDropzone"] svg polygon {
+        stroke: unset !important;
     }
 
     /* ═══ ALERTS — keep native colors ═══ */
