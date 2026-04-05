@@ -161,6 +161,33 @@ st.markdown("""
     .stSpinner > div > div {
         border-top-color: #00d4ff !important;
     }
+
+    /* ── Global text contrast fixes ── */
+    .stApp, .stApp p, .stApp li, .stApp span, .stApp td, .stApp th,
+    .stApp label, .stMarkdown, .stMarkdown p, .stMarkdown li {
+        color: #ffffff !important;
+    }
+    .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
+        color: #ffffff !important;
+    }
+    .stApp strong, .stApp b {
+        color: #ffffff !important;
+    }
+
+    /* Expander text */
+    .streamlit-expanderHeader, .streamlit-expanderHeader p {
+        color: #ffffff !important;
+    }
+
+    /* Info / warning / success / error boxes */
+    .stAlert p {
+        color: inherit !important;
+    }
+
+    /* Caption text */
+    .stCaption, .stCaption p {
+        color: #aabbcc !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
