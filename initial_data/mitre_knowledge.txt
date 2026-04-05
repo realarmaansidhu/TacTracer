@@ -1,0 +1,26 @@
+MITRE ATT&CK Framework for IoT & ICS - Knowledge Base Snapshot
+==============================================================
+
+Technique: T1059.004 - Command and Scripting Interpreter: Unix Shell.
+Description: Mirai botnets and similar IoT malware often use default credentials on ports 23 (Telnet) and 2323 to gain initial access and execute shell commands.
+
+Technique: T1190 - Exploit Public-Facing Application.
+Description: Attackers scan for open HTTP ports (80, 8080, 81, 8000) to exploit vulnerabilities in IoT web interfaces (e.g., router admin panels or IP cameras) to inject malicious payloads.
+
+Technique: T1110 - Brute Force.
+Description: Threat actors may use automated scripts to systematically guess passwords on SSH (Port 22) or Telnet to gain administrative access to headless IoT devices.
+
+Technique: T1071.001 - Application Layer Protocol: Web Protocols.
+Description: Malware may use standard HTTP/HTTPS traffic (Ports 80/443) to communicate with external Command and Control (C2) servers, blending in with benign network activity.
+
+Technique: T1078.001 - Valid Accounts: Default Accounts.
+Description: IoT devices often ship with hardcoded, default credentials (e.g., admin/admin). Botnets leverage these known accounts to bypass authentication.
+
+Technique: T1046 - Network Service Scanning.
+Description: Adversaries may attempt to get a listing of services listening on remote hosts or local network devices to find potential vectors for lateral movement.
+
+Technique: T1498 - Network Denial of Service.
+Description: Compromised IoT devices are frequently clustered into botnets to launch high-volume UDP or TCP flood attacks against external targets.
+
+Technique: T1105 - Ingress Tool Transfer.
+Description: After gaining initial access, adversaries will often download secondary payloads (like the actual botnet malware binary) from a remote server using HTTP or FTP.

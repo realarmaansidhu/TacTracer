@@ -1,0 +1,5 @@
+#fields ts  uid id.orig_h   id.orig_p   id.resp_h   id.resp_p   proto   service conn_state  label
+1525882100.01   C3x4mN5oP   192.168.1.50    49152   8.8.8.8 53  udp dns SF  Benign
+1525882100.45   C4x5nO6pQ   192.168.1.50    49153   192.168.1.1 443 tcp ssl SF  Benign
+1525882105.00   C5x6oP7qR   192.168.1.51    12345   8.8.4.4 53  udp dns SF  Benign
+1525882108.30   C6x7pQ8rS   192.168.1.50    49154   104.21.44.12    443 tcp ssl SF  Benign
