@@ -5,7 +5,7 @@
 #path	conn
 #open	2018-05-09-16-10-31
 #fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents	label	detailed-label
-#types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]	string	string
+#types	time	string	addr	prt	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]	string	string
 1525879831.012345	CYFva54kEjigsPOi3l	192.168.1.195	48724	185.176.27.132	23	tcp	-	3.204517	0	0	S0	-	-	0	S	4	208	0	0	-	Malicious	PartOfAHorizontalPortScan
 1525879831.524910	CnGHP71bQfLRsUYi3	192.168.1.195	48730	45.227.253.214	23	tcp	-	3.128940	0	0	S0	-	-	0	S	4	208	0	0	-	Malicious	PartOfAHorizontalPortScan
 1525879832.101382	CkqDsP3FdY8nOJAWNc	192.168.1.195	49102	10.0.0.5	2323	tcp	-	2.998102	112	0	S0	-	-	0	ShADTaf	12	688	4	208	-	Malicious	PartOfAHorizontalPortScan
