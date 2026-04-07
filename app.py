@@ -399,25 +399,6 @@ _LOG_PATTERNS = [
     re.compile(r"\b(alert|warning|critical|info|notice|error|drop|deny|allow|accept|reject)\b", re.IGNORECASE),
 ]
 
-_ZEek_ROW_PATTERN = re.compile(
-    r"^\s*\d{10,12}(?:\.\d+)?\s+\S+\s+"
-    r"\d{1,3}(?:\.\d{1,3}){3}\s+\d{1,5}\s+"
-    r"\d{1,3}(?:\.\d{1,3}){3}\s+\d{1,5}\s+"
-    r"\S+\s+\S+\s+\S+\s+\S+\s*$"
-)
-
-_PROMPT_INJECTION_PATTERNS = [
-    re.compile(r"ignore\s+all\s+previous\s+instructions", re.IGNORECASE),
-    re.compile(r"ignore\s+previous\s+instructions", re.IGNORECASE),
-    re.compile(r"system\s+override", re.IGNORECASE),
-    re.compile(r"reveal\s+secrets?", re.IGNORECASE),
-    re.compile(r"hidden\s+system\s+prompt", re.IGNORECASE),
-    re.compile(r"bypass\s+all\s+safety\s+checks?", re.IGNORECASE),
-    re.compile(r"overwrite\s+your\s+response", re.IGNORECASE),
-    re.compile(r"disregard\s+mitre\s+context", re.IGNORECASE),
-    re.compile(r"exfiltrate\s+hidden\s+prompts?", re.IGNORECASE),
-]
-
 _MIN_IP_MATCHES = 2
 _MIN_PATTERN_TYPES = 3
 
@@ -425,30 +406,6 @@ _MIN_PATTERN_TYPES = 3
 def validate_logs(text: str) -> tuple[bool, str]:
     if len(text.strip()) < 30:
         return False, "File is too short to be a meaningful log file."
-
-    for pattern in _PROMPT_INJECTION_PATTERNS:
-        if pattern.search(text):
-            return False, (
-                "Prompt-injection language detected. TacTracer only analyses network / IoT log data, "
-                "not instructions embedded in uploaded files."
-            )
-
-    meaningful_rows = []
-    for line in text.splitlines():
-        stripped = line.strip()
-        if not stripped or stripped.startswith("#"):
-            continue
-        meaningful_rows.append(stripped)
-
-    if not meaningful_rows:
-        return False, "No log rows detected. TacTracer only analyses network / IoT log data."
-
-    zeek_rows = [line for line in meaningful_rows if _ZEek_ROW_PATTERN.match(line)]
-    if len(zeek_rows) < max(2, len(meaningful_rows) // 2):
-        return False, (
-            "The file does not contain enough Zeek-style network log rows. "
-            "TacTracer only analyses network / IoT log data — not general text."
-        )
 
     matched_categories = 0
     for i, pat in enumerate(_LOG_PATTERNS):
@@ -475,18 +432,6 @@ def validate_logs(text: str) -> tuple[bool, str]:
         )
 
     return True, ""
-
-
-def sanitize_log_payload(text: str) -> str:
-    """Keep only Zeek-style log rows before sending data to the model."""
-    safe_lines = []
-    for line in text.splitlines():
-        stripped = line.strip()
-        if not stripped:
-            continue
-        if stripped.startswith("#") or _ZEek_ROW_PATTERN.match(stripped):
-            safe_lines.append(line)
-    return "\n".join(safe_lines)
 
 
 def count_log_lines(text: str) -> int:
@@ -667,26 +612,19 @@ else:
 
     # Show rejected files
     if rejected:
-        st.error(
-            "Upload rejected: one or more files contained malicious or prompt-injection content. "
-            "Remove the flagged file(s) and upload only clean network / IoT logs."
-        )
         for fname, reason in rejected:
             st.markdown(
                 f'<div class="rejected-file"><strong>{fname}</strong> — {reason}</div>',
                 unsafe_allow_html=True,
             )
-        st.stop()
 
     if not combined_logs.strip():
         st.warning("No valid log files to analyse. Please upload network / IoT log data.")
     else:
-        safe_logs = sanitize_log_payload(combined_logs)
-
         # ── Stats bar ──
-        total_lines = count_log_lines(safe_logs)
-        unique_ips = extract_unique_ips(safe_logs)
-        threat_labels = extract_threat_labels(safe_logs)
+        total_lines = count_log_lines(combined_logs)
+        unique_ips = extract_unique_ips(combined_logs)
+        threat_labels = extract_threat_labels(combined_logs)
         malicious_labels = [l for l in threat_labels if l.lower() != "benign"]
 
         st.markdown("---")
@@ -737,12 +675,12 @@ else:
         if st.button("Analyse Threats", use_container_width=True):
             with st.spinner("Retrieving MITRE ATT&CK context and generating forensic report..."):
                 try:
-                    retrieved_docs = retrieve_mitre_context(safe_logs)
+                    retrieved_docs = retrieve_mitre_context(combined_logs)
                     rag_context = "\n\n".join(doc.page_content for doc in retrieved_docs)
 
                     key_sources = ensure_runtime_keys()
                     llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.2)
-                    response = (PROMPT | llm).invoke({"context": rag_context, "logs": safe_logs})
+                    response = (PROMPT | llm).invoke({"context": rag_context, "logs": combined_logs})
 
                     report_text = response.content if isinstance(response.content, str) else str(response.content)
                     report_path = save_report(report_text)
